@@ -23,5 +23,4 @@ intents = discord.Intents.default()
 intents.message_content = True
 
 client = MyClient(intents=intents)
-#client.run('MTE1NzQxOTM1MTEyNTc5NDk2Ng.Gs0pjE.dbQmasXDjkXzCOEb1F-84q3nZJKByJi7WmrsgQ') # Replace with your own token.
 client.run(config["API_KEY"])
