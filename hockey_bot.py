@@ -19,6 +19,10 @@ class MyClient(discord.Client):
     if message.content.startswith("$hockey"):
       await message.channel.send(get_meme())
 
+  async def on_message_delete(self, message):
+    if message.delete():
+      await message.channel.send("I wonder what you're hiding...")
+
 intents = discord.Intents.default()
 intents.message_content = True
 
