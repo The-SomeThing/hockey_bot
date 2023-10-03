@@ -19,9 +19,8 @@ class MyClient(discord.Client):
     if message.content.startswith("$hockey"):
       await message.channel.send("Hockey is Awesome but you are not.")
 
-  async def on_raw_message_delete(self, message):
+  async def on_message_delete(self, message):
     await message.channel.send("What are ya hidin' bud?")
-
 
 intents = discord.Intents.default()
 intents.message_content = True
