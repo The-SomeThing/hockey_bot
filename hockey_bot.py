@@ -13,11 +13,16 @@ class MyClient(discord.Client):
     print('Logged on as {0}!'.format(self.user))
 
   async def on_message(self, message):
+    chirp = message.content
+
     if message.author == self.user:
       return
     
     if message.content.startswith("$hockey"):
       await message.channel.send("Hockey is Awesome but you are not.")
+
+    if message.author != self.user:
+      message.channel.send(chirp)
 
   async def on_message_delete(self, message):
     await message.channel.send("What are ya hidin' bud?")
