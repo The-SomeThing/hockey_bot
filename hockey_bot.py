@@ -21,25 +21,17 @@ class MyClient(discord.Client):
     if message.content.startswith("$hockey"):
       await message.channel.send("Hockey is Awesome but you are not.")
 
-    if message.author != self.user:
-      message.channel.send(chirp)
+    elif message.author != self.user:
+      await message.channel.send(chirp)
 
-  async def on_message_delete(self, message):
-    await message.channel.send("What are ya hidin' bud?")
+  async def on_raw_message_delete(self, payload):
+    current_channel = client.get_channel(payload.channel_id)
+    await current_channel.send("What are ya hidin' bud?")
+
+
 
 intents = discord.Intents.default()
 intents.message_content = True
 
 client = MyClient(intents=intents)
 client.run(config["API_KEY"])
-
-
-
-
-
-
-# When line 22 doesn't pass the "self" argument it spits out this message: (Why?)
-
-# await coro(*args, **kwargs)
-#          ^^^^^^^^^^^^^^^^^^^^^
-# TypeError: MyClient.on_message_delete() takes 1 positional argument but 2 were given
