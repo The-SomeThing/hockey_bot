@@ -47,9 +47,9 @@ class MyClient(discord.Client):
     await current_channel.send("What are ya hidin' bud?")
 
   # When user joins / leaves voice channel
-  async def on_voice_state_update(self, member):
-    general_channel = client.get_channel(354022119136559116)
-    await general_channel.send("Hello There!")
+  async def on_voice_state_update():
+    channel_id = 354022119136559116
+    await channel_id.send("Hello There!")
 
 
 
