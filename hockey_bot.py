@@ -47,14 +47,23 @@ class MyClient(discord.Client):
     await current_channel.send("What are ya hidin' bud?")
 
   # When user joins / leaves voice channel
-  async def on_voice_state_update():
-    channel_id = 354022119136559116
+  # Furious George's Corner General ch_id: 354022119136559116
+  # Furious George's Corner Coding-Stuff ch_id: 
+  async def on_voice_state_update(self, member, before, after):
+    channel_id = client.get_channel()
     await channel_id.send("Hello There!")
+    if member.voice.self_mute is True:
+      channel_id = client.get_channel()
+      await channel_id.send("Plz Work")
 
+    if member.voice.self_mute is False:
+      channel_id = client.get_channel()
+      await channel_id.send("Horray!")
 
 
 intents = discord.Intents.default()
 intents.message_content = True
+intents.members = True
 
 client = MyClient(intents=intents)
 client.run(config["API_KEY"])
