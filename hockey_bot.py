@@ -34,12 +34,16 @@ class MyClient(discord.Client):
       await message.channel.send("Hockey is Awesome but you are not.")
 
     # Insult the user
-    elif tcontc == 6:
+    if tcontc == 6:
       await message.channel.send(random.choice(bird))
 
     # Parrot the user
     elif message.author != self.user:
       await message.channel.send(parrot)
+
+    # Delete messages
+    if message.content.startswith("!delete"):
+      await message.channel.delete()
 
 
   async def on_raw_message_delete(self, payload):
@@ -48,17 +52,15 @@ class MyClient(discord.Client):
 
   # When user joins / leaves voice channel
   # Furious George's Corner General ch_id: 354022119136559116
-  # Furious George's Corner Coding-Stuff ch_id: 
+  # Furious George's Corner Coding-Stuff ch_id: 1153441248330391713
   async def on_voice_state_update(self, member, before, after):
-    channel_id = client.get_channel()
-    await channel_id.send("Hello There!")
     if member.voice.self_mute is True:
-      channel_id = client.get_channel()
-      await channel_id.send("Plz Work")
+      coding_ch = client.get_channel(1153441248330391713)
+      await coding_ch.send("Plz Work")
 
     if member.voice.self_mute is False:
-      channel_id = client.get_channel()
-      await channel_id.send("Horray!")
+      coding_ch = client.get_channel(1153441248330391713)
+      await coding_ch.send("Horray!")
 
 
 intents = discord.Intents.default()
