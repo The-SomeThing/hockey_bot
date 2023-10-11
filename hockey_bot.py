@@ -43,7 +43,11 @@ class MyClient(discord.Client):
 
     # Delete messages
     if message.content.startswith("!delete"):
-      await message.channel.delete()
+      def is_me(m):
+        return m.author == client.user
+
+      deleted = await message.channel.purge(limit=10, check=is_me)
+      await message.channel.send(f'Deleted {len(deleted)} message(s)')
 
 
   async def on_raw_message_delete(self, payload):
