@@ -30,21 +30,23 @@ class MyClient(discord.Client):
       return
     
     # Tell you you're worthless
-    if message.content.startswith("$hockey"):
+    elif message.content.startswith("$hockey"):
       await message.channel.send("Hockey is Awesome but you are not.")
 
     # Insult the user
-    if tcontc == 6:
+    elif tcontc == 6:
       await message.channel.send(random.choice(bird))
 
+    # Delete messages
+    elif message.content.startswith("!delete"):
+      deleted = await message.channel.purge(limit= 10)
+      await message.channel.send(f'Deleted {len(deleted)} message(s)')
+    
     # Parrot the user
     elif message.author != self.user:
       await message.channel.send(parrot)
 
-    # Delete messages
-    if message.content.startswith("!delete"):
-      deleted = await message.channel.purge(limit= 10, before= datetime.datetime.today())
-      await message.channel.send(f'Deleted {len(deleted)} message(s)')
+
 
   # Why does this still work after being disabled by comments?
   #async def on_raw_message_delete(self, payload):
