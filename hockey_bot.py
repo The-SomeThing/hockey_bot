@@ -1,4 +1,4 @@
-import discord, json, requests, random
+import discord, json, requests, random, datetime
 from dotenv import dotenv_values
 
 config = dotenv_values(".env")
@@ -43,16 +43,13 @@ class MyClient(discord.Client):
 
     # Delete messages
     if message.content.startswith("!delete"):
-      def is_me(m):
-        return m.author == client.user
-
-      deleted = await message.channel.purge(limit=10, check=is_me)
+      deleted = await message.channel.purge(limit= 10, before= datetime.datetime.today())
       await message.channel.send(f'Deleted {len(deleted)} message(s)')
 
-
-  async def on_raw_message_delete(self, payload):
-    current_channel = client.get_channel(payload.channel_id)
-    await current_channel.send("What are ya hidin' bud?")
+  # Why does this still work after being disabled by comments?
+  #async def on_raw_message_delete(self, payload):
+  #  current_channel = client.get_channel(payload.channel_id)
+  #  await current_channel.send("What are ya hidin' bud?")
 
   # When user joins / leaves voice channel
   # Furious George's Corner General ch_id: 354022119136559116
