@@ -62,11 +62,11 @@ class MyClient(discord.Client):
   async def on_voice_state_update(self, member, before, after):
     if member.voice.self_mute is True:
       coding_ch = client.get_channel(1153441248330391713)
-      await coding_ch.send("SPEAK")
+      await coding_ch.send("We don't hear you, or we're not listening...")
 
     if member.voice.self_mute is False:
       coding_ch = client.get_channel(1153441248330391713)
-      await coding_ch.send("We don't hear you, or we're not listening...")
+      await coding_ch.send("SPEAK")
 
 
 intents = discord.Intents.default()
